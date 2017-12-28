@@ -10,9 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171228030249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "host_id"
+    t.integer "user_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hosts", force: :cascade do |t|
+    t.string "name"
+    t.string "availability"
+    t.string "website"
+    t.string "email"
+    t.string "phone"
+    t.string "city"
+    t.string "state"
+    t.integer "reviews"
+    t.integer "recommended"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "host_id"
+    t.string "miners"
+    t.string "recommended"
+    t.string "has_vpn"
+    t.string "insurance"
+    t.string "review"
+    t.string "pricing"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "user_name"
+    t.string "email"
+    t.string "password"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
